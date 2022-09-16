@@ -78,4 +78,10 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Services\MessageServices\" />
+	  <Folder Include="Services\AccountServices\" />
+	  <Folder Include="Services\ProductServices\" />
+	</ItemGroup>
+
 </Project>

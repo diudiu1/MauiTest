@@ -1,4 +1,8 @@
-﻿namespace MauiApp3;
+﻿using MauiApp3.Services.BlogServices;
+using MauiApp3.Views.homes;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace MauiApp3;
 
 public static class MauiProgram
 {
@@ -13,6 +17,14 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		return builder.Build();
+
+        //var services = builder.Services;
+
+		//services.AddSingleton<IBlogService, BlogService>();
+
+        //services.AddSingleton<HomePageViewModel>();
+        //services.AddSingleton<HomePage>();
+
+        return builder.Build();
 	}
 }

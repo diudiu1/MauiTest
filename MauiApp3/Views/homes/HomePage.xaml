@@ -3,10 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp3.HomePage"
              Title="HomePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to HomePage"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <CollectionView ItemsSource="{Binding Monkeys}" ItemsLayout="VerticalGrid, 2">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid Padding="0" Margin="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="200" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="20" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <BoxView Grid.Row="0" Color="Red" />
+                        <BoxView Grid.Row="1" Color="Blue" />
+                        <BoxView Grid.Row="2" Color="Red" />
+                        <!--<Label Grid.Row="1" Text="{Binding Name}" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                        <Label Grid.Row="1" Text="{Binding Location}" LineBreakMode="TailTruncation" FontAttributes="Italic" VerticalOptions="End" />-->
+                    </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

@@ -4,10 +4,14 @@ namespace MauiApp3;
 
 public partial class HomePage : ContentPage
 {
-	public HomePage()
+    public HomePage()
 	{
 		InitializeComponent();
 
-		BindingContext = new HomePageViewModel();
+        BindingContext= new HomePageViewModel();
 	}
+    //async void OnCollectionViewRemainingItemsThresholdReached(object sender, EventArgs e)
+    //{
+    //    await viewModel.NextPageData();
+    //}
 }

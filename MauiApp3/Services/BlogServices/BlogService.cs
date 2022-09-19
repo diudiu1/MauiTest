@@ -8,48 +8,25 @@ namespace MauiApp3.Services.BlogServices
 {
     public class BlogService : IBlogService
     {
-        private List<BlogListItemResponseModel> BlogData = new List<BlogListItemResponseModel>() {
-            new BlogListItemResponseModel(){
-                Id="1",
-                Body="1Body",
-                CreateTime=DateTime.Now,
-                CoverImageUrl="",
-                Type=1,
-                ImageUrls=new List<string>(){ "","","" },
-                Title="1Title",
-            },
-            new BlogListItemResponseModel(){
-                Id="2",
-                Body="2Body",
-                CreateTime=DateTime.Now,
-                CoverImageUrl="",
-                Type=1,
-                ImageUrls=new List<string>(){ "","","" },
-                Title="2Title",
-            },
-            new BlogListItemResponseModel(){
-                Id="3",
-                Body="3Body",
-                CreateTime=DateTime.Now,
-                CoverImageUrl="",
-                Type=2,
-                Title="3Title",
-                VideoUrl="",
-            },
-            new BlogListItemResponseModel(){
-                Id="4",
-                Body="4Body",
-                CreateTime=DateTime.Now,
-                CoverImageUrl="",
-                Type=2,
-                Title="4Title",
-                VideoUrl="",
-            },
-        };
+        private List<BlogListItemResponseModel> BlogData = new List<BlogListItemResponseModel>();
         private readonly HttpClient httpClient;
         public BlogService(HttpClient httpClient)
         {
             this.httpClient = httpClient;
+            for (int i = 0; i < 100; i++)
+            {
+                var blog = new BlogListItemResponseModel()
+                {
+                    Id = "id"+i,
+                    Body = "Body"+i,
+                    CreateTime = DateTime.Now,
+                    CoverImageUrl = "",
+                    Type = 1,
+                    ImageUrls = new List<string>() { "", "", "" },
+                    Title = "Title"+i,
+                };
+                BlogData.Add(blog);
+            }
         }
         public Task<List<BlogListItemResponseModel>> GetBlogListAsync(BlogListRequestModel request)
         {
@@ -88,6 +65,13 @@ namespace MauiApp3.Services.BlogServices
 
 
             return Task.FromResult(resp);
+        }
+
+        public Task<BlogListItemResponseModel> GetBlogAsync(string id)
+        {
+            var blog = BlogData.FirstOrDefault(a => a.Id == id);
+
+            return Task.FromResult(blog);
         }
     }
 }

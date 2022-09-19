@@ -9,6 +9,7 @@ namespace MauiApp3.Services.BlogServices
     public interface IBlogService
     {
         Task<List<BlogListItemResponseModel>> GetBlogListAsync(BlogListRequestModel request);
+        Task<BlogListItemResponseModel> GetBlogAsync(string id);
         Task<BlogListItemResponseModel> GetBlogNextAsync(BlogNextRequestModel request);
     }
 }

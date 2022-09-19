@@ -49,6 +49,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\homes\BlogDetailPage.xaml.cs">
+	    <DependentUpon>BlogDetailPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\homes\HomePage.xaml.cs">
 	    <DependentUpon>HomePage.xaml</DependentUpon>
 	  </Compile>
@@ -64,6 +67,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\homes\BlogDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\homes\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -82,6 +88,10 @@
 	  <Folder Include="Services\MessageServices\" />
 	  <Folder Include="Services\AccountServices\" />
 	  <Folder Include="Services\ProductServices\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	</ItemGroup>
 
 </Project>

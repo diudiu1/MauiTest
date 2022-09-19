@@ -2,25 +2,36 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp3.HomePage"
-             Title="HomePage">
-    <CollectionView ItemsSource="{Binding Monkeys}" ItemsLayout="VerticalGrid, 2">
+             xmlns:viewmodel="clr-namespace:MauiApp3.Views.homes">
+    <CollectionView x:Name="listview" ItemsSource="{Binding BlogList}"  
+                    RemainingItemsThreshold="0"
+                    RemainingItemsThresholdReachedCommand="{Binding NextPageDataCommand}"
+                    >
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="{OnPlatform 4 ,iOS=2,Android=2}" />
+        </CollectionView.ItemsLayout>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid Padding="0" Margin="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="200" />
-                            <RowDefinition Height="20" />
-                            <RowDefinition Height="20" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <BoxView Grid.Row="0" Color="Red" />
-                        <BoxView Grid.Row="1" Color="Blue" />
-                        <BoxView Grid.Row="2" Color="Red" />
-                        <!--<Label Grid.Row="1" Text="{Binding Name}" FontAttributes="Bold" LineBreakMode="TailTruncation" />
-                        <Label Grid.Row="1" Text="{Binding Location}" LineBreakMode="TailTruncation" FontAttributes="Italic" VerticalOptions="End" />-->
-                    </Grid>
+                <Grid Padding="5" Margin="5"  BackgroundColor="#eee">
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="200" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Frame>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:HomePageViewModel}}, Path=ItemClickCommand}" CommandParameter="{Binding .}"/>
+                        </Frame.GestureRecognizers>
+                        <Image Grid.Row="0" Source="{Binding CoverImageUrl}" Aspect="AspectFill"></Image>
+                    </Frame>
+                    
+                    <Label Grid.Row="1" Text="{Binding Title}" FontAttributes="Bold" LineBreakMode="TailTruncation" />
+                    <Label Grid.Row="2" Text="{Binding Body}" LineBreakMode="TailTruncation" FontAttributes="Italic" VerticalOptions="End" />
+                </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

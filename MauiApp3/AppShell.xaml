@@ -8,16 +8,16 @@
     >
     <TabBar>
         <ShellContent Title="首页"
-                     Icon="cat.png"
+                     Icon="tab_home.svg"
                      ContentTemplate="{DataTemplate local:HomePage}" />
         <ShellContent Title="购物"
-                     Icon="dog.png"
+                     Icon="tab_favorites.svg"
                      ContentTemplate="{DataTemplate local:ProductListPage}" />
         <ShellContent Title="消息"
-                     Icon="monkey.png"
+                     Icon="tab_map.svg"
                      ContentTemplate="{DataTemplate local:MessagePage}" />
         <ShellContent Title="我"
-                     Icon="monkey.png"
+                     Icon="tab_settings.svg"
                      ContentTemplate="{DataTemplate local:MyIndexPage}" />
     </TabBar>
     

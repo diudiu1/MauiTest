@@ -4,11 +4,11 @@ namespace MauiApp3;
 
 public partial class HomePage : ContentPage
 {
-    public HomePage()
+    public HomePage(HomePageViewModel vm)
 	{
 		InitializeComponent();
 
-        BindingContext= new HomePageViewModel();
+        BindingContext= vm;
 	}
     //async void OnCollectionViewRemainingItemsThresholdReached(object sender, EventArgs e)
     //{

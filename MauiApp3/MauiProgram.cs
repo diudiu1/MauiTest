@@ -18,13 +18,18 @@ public static class MauiProgram
 			});
 
 
-        //var services = builder.Services;
+        var services = builder.Services;
 
-		//services.AddSingleton<IBlogService, BlogService>();
+		services.AddSingleton<IBlogService, BlogService>();
 
-        //services.AddSingleton<HomePageViewModel>();
-        //services.AddSingleton<HomePage>();
+        services.AddSingleton<HomePageViewModel>();
+        services.AddSingleton<HomePage>();
 
+        services.AddSingleton<BlogDetailPageViewModel>();
+        services.AddSingleton<BlogDetailPage>();
+
+
+        Routing.RegisterRoute(nameof(BlogDetailPage), typeof(BlogDetailPage));
         return builder.Build();
 	}
 }

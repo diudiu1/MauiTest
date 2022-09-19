@@ -15,7 +15,6 @@ namespace MauiApp3.Views.homes
             {
                 var value = query["Id"].ToString();
                 await InitData(value);
-                
             }
         }
         private readonly IBlogService _blogService;
@@ -32,7 +31,7 @@ namespace MauiApp3.Views.homes
             if (blog!=null)
             {
                 title = blog.Title;
-                //this.SetProperty(ref title, blog.Title);
+                this.OnPropertyChanged("Title");
             }
         }
         

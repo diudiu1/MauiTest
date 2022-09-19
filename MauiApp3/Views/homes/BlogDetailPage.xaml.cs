@@ -4,10 +4,9 @@ namespace MauiApp3;
 
 public partial class BlogDetailPage : ContentPage
 {
-    public BlogDetailPage()
+    public BlogDetailPage(BlogDetailPageViewModel vm)
 	{
 		InitializeComponent();
-
-        BindingContext= new BlogDetailPageViewModel();
+        BindingContext = vm;
 	}
 }

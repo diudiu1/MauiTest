@@ -14,7 +14,7 @@ namespace MauiApp3.Services.BlogServices
         /// 封面图
         /// </summary>
         public string CoverImageUrl { get; set; }
-        public string Body { get; set; }
+        public string Content { get; set; }
         /// <summary>
         /// 1 图片 2 视频
         /// </summary>

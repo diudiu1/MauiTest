@@ -18,7 +18,7 @@ namespace MauiApp3.Services.BlogServices
                 var blog = new BlogListItemResponseModel()
                 {
                     Id = "id"+i,
-                    Body = "Body"+i,
+                    Content = "Body"+i,
                     CreateTime = DateTime.Now,
                     CoverImageUrl = "",
                     Type = 1,

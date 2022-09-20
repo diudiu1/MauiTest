@@ -1,7 +1,11 @@
-﻿using System;
+﻿using MauiApp3.Configs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace MauiApp3.Services.AccountServices
@@ -9,10 +13,13 @@ namespace MauiApp3.Services.AccountServices
     public class AccountService : IAccountService
     {
         private List<AccountListItemResponseModel> AccountData = new List<AccountListItemResponseModel>();
-        private readonly HttpClient httpClient;
+        private readonly HttpClient _httpClient;
+        private AccountInfo currentAccount;
+        public AccountInfo CurrentAccount { get => currentAccount; set => currentAccount=value; }
+
         public AccountService(HttpClient httpClient)
         {
-            this.httpClient = httpClient;
+            this._httpClient = httpClient;
             for (int i = 0; i < 100; i++)
             {
                 var blog = new AccountListItemResponseModel()
@@ -72,6 +79,17 @@ namespace MauiApp3.Services.AccountServices
             var blog = AccountData.FirstOrDefault(a => a.Id == id);
 
             return Task.FromResult(blog);
+        }
+
+        public async Task<LoginResponseModel> LoginAsync(LoginRequestModel request)
+        {
+            var model = new StringContent(JsonSerializer.Serialize(request));
+            var resp= await _httpClient.PostAsync(Appsettings.LoginUrl, model);
+            if (resp.IsSuccessStatusCode)
+            {
+               return await resp.Content.ReadFromJsonAsync<LoginResponseModel>();
+            }
+            return null;
         }
     }
 }

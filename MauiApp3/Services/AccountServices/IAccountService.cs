@@ -11,5 +11,7 @@ namespace MauiApp3.Services.AccountServices
         Task<List<AccountListItemResponseModel>> GetAccountListAsync(AccountListRequestModel request);
         Task<AccountListItemResponseModel> GetAccountAsync(string id);
         Task<AccountListItemResponseModel> GetAccountNextAsync(AccountNextRequestModel request);
+        Task<LoginResponseModel> LoginAsync(LoginRequestModel request);
+        public AccountInfo CurrentAccount { get; set; }
     }
 }

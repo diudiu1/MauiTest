@@ -40,6 +40,7 @@ public static class MauiProgram
         Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
         Routing.RegisterRoute(nameof(MessagePage), typeof(MessagePage));
         Routing.RegisterRoute(nameof(BlogDetailPage), typeof(BlogDetailPage));
+        Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
         return builder.Build();
 	}
 }

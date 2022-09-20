@@ -1,5 +1,8 @@
-﻿using MauiApp3.Services.BlogServices;
-using MauiApp3.Views.homes;
+﻿using MauiApp3.Services.AccountServices;
+using MauiApp3.Services.BlogServices;
+using MauiApp3.Services.MessageServices;
+using MauiApp3.Services.ProductServices;
+using MauiApp3.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace MauiApp3;
@@ -21,14 +24,21 @@ public static class MauiProgram
         var services = builder.Services;
 
 		services.AddSingleton<IBlogService, BlogService>();
+        services.AddSingleton<IProductService, ProductService>();
+        services.AddSingleton<IMessageService, MessageService>();
+        services.AddSingleton<IAccountService, AccountService>();
+
+
 
         services.AddSingleton<HomePageViewModel>();
-        services.AddSingleton<HomePage>();
-
         services.AddSingleton<BlogDetailPageViewModel>();
+
+
+        services.AddSingleton<HomePage>();
         services.AddSingleton<BlogDetailPage>();
 
-
+        Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
+        Routing.RegisterRoute(nameof(MessagePage), typeof(MessagePage));
         Routing.RegisterRoute(nameof(BlogDetailPage), typeof(BlogDetailPage));
         return builder.Build();
 	}

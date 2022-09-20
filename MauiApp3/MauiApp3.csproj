@@ -49,45 +49,51 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\homes\BlogDetailPage.xaml.cs">
+	  <Compile Update="Services\MessageServices\App.xaml.cs">
+	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
+	  <Compile Update="Services\ProductServices\App.xaml.cs">
+	    <DependentUpon>%(Filename)</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Homes\BlogDetailPage.xaml.cs">
 	    <DependentUpon>BlogDetailPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\homes\HomePage.xaml.cs">
+	  <Compile Update="Views\Homes\HomePage.xaml.cs">
 	    <DependentUpon>HomePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\messages\MessagePage.xaml.cs">
+	  <Compile Update="Views\Messages\MessagePage.xaml.cs">
 	    <DependentUpon>MessagePage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\myinfos\MyIndexPage.xaml.cs">
+	  <Compile Update="Views\Myinfos\MyIndexPage.xaml.cs">
 	    <DependentUpon>MyIndexPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\shoppings\ProductListPage.xaml.cs">
+	  <Compile Update="Views\Shoppings\ProductListPage.xaml.cs">
 	    <DependentUpon>ProductListPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\homes\BlogDetailPage.xaml">
+	  <MauiXaml Update="Services\MessageServices\App.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\homes\HomePage.xaml">
+	  <MauiXaml Update="Services\ProductServices\App.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\messages\MessagePage.xaml">
+	  <MauiXaml Update="Views\Homes\BlogDetailPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\myinfos\MyIndexPage.xaml">
+	  <MauiXaml Update="Views\Homes\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\shoppings\ProductListPage.xaml">
+	  <MauiXaml Update="Views\Messages\MessagePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Services\MessageServices\" />
-	  <Folder Include="Services\AccountServices\" />
-	  <Folder Include="Services\ProductServices\" />
+	  <MauiXaml Update="Views\Myinfos\MyIndexPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Shoppings\ProductListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>

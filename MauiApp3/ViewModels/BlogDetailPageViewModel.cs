@@ -4,7 +4,7 @@ using MauiApp3.Services.BlogServices;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace MauiApp3.Views.homes
+namespace MauiApp3.ViewModels
 {
     [QueryProperty("Id", "Id")]
     public partial class BlogDetailPageViewModel : ObservableObject, IQueryAttributable
@@ -25,13 +25,15 @@ namespace MauiApp3.Views.homes
             //title = "0000000";
             //InitData();  不能在此处初始化，页面传值Query 还没有生效
         }
-        async Task InitData(string id)
+        public async Task InitData(string id)
         {
-            blog = await _blogService.GetBlogAsync(id);
+            this.id = id;
+            blog = await _blogService.GetBlogAsync(this.id);
             if (blog!=null)
             {
                 title = blog.Title;
                 this.OnPropertyChanged("Title");
+                this.OnPropertyChanged("Id");
             }
         }
         
@@ -43,7 +45,7 @@ namespace MauiApp3.Views.homes
         [ObservableProperty]
         public string title;
         [RelayCommand]
-        async Task GoBack()
+        async Task GoBack(object par)
         {
             await Shell.Current.GoToAsync("..");
         }

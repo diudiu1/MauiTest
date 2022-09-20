@@ -8,4 +8,8 @@ public partial class AppShell : Shell
 
         
     }
+	public void GotoHome()
+	{
+        Shell.Current.CurrentItem = homeTabItem;
+    }
 }

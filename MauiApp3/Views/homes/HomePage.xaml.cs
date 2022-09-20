@@ -1,4 +1,4 @@
-using MauiApp3.Views.homes;
+using MauiApp3.ViewModels;
 
 namespace MauiApp3;
 

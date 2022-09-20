@@ -4,6 +4,9 @@
              x:Class="MauiApp3.ProductListPage"
              Title="ProductListPage">
     <VerticalStackLayout>
+        <VerticalStackLayout.GestureRecognizers>
+            <SwipeGestureRecognizer  Direction="Right" Swiped="OnSwiped"/>
+        </VerticalStackLayout.GestureRecognizers>
         <Label 
             Text="Welcome to ProductListPage!"
             VerticalOptions="Center" 

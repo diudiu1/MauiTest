@@ -4,7 +4,7 @@ using MauiApp3.Services.BlogServices;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace MauiApp3.Views.homes
+namespace MauiApp3.ViewModels
 {
     public partial class MessagePageViewModel : INotifyPropertyChanged
     {
@@ -78,7 +78,7 @@ namespace MauiApp3.Views.homes
                     //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Hue"));
                     //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Saturation"));
                     //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Luminosity"));
-                    //PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Color"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Color"));
 
                     Name = color.ToString();
                 }

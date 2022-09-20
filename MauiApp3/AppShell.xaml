@@ -9,12 +9,15 @@
     <TabBar>
         <ShellContent Title="首页"
                      Icon="tab_home.svg"
+                      x:Name="homeTabItem"
                      ContentTemplate="{DataTemplate local:HomePage}" />
         <ShellContent Title="购物"
+                     Shell.TabBarIsVisible="false"
                      Icon="tab_favorites.svg"
                      ContentTemplate="{DataTemplate local:ProductListPage}" />
         <ShellContent Title="消息"
                      Icon="tab_map.svg"
+                      
                      ContentTemplate="{DataTemplate local:MessagePage}" />
         <ShellContent Title="我"
                      Icon="tab_settings.svg"

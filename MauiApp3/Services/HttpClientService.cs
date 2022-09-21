@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Text;
@@ -27,7 +28,7 @@ namespace MauiApp3.Services
         private HttpClient CreateHttpClient()
         {
             var httpClient = _httpClient.Value;
-
+            httpClient.DefaultRequestHeaders.Clear();
             if (IAccountService.CurrentAccount!=null)
             {
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", IAccountService.CurrentAccount.Token);
@@ -43,7 +44,7 @@ namespace MauiApp3.Services
         {
             var httpClient = CreateHttpClient();
             var resp = await httpClient.GetAsync(url);
-            return await resp.Content.ReadFromJsonAsync<TResponse>();
+            return await FromJsonAsync<TResponse>(resp);
         }
         public async Task<TResponse> GetAsync<TRequest, TResponse>(string url, TRequest request)
         {
@@ -71,7 +72,18 @@ namespace MauiApp3.Services
 
         private async Task<TResponse> FromJsonAsync<TResponse>(HttpResponseMessage responseMessage)
         {
-            return await responseMessage.Content.ReadFromJsonAsync<TResponse>(options);
+            if (responseMessage.StatusCode == HttpStatusCode.Unauthorized)
+            {
+                //var login = MauiProgram.Services.GetService<LoginPage>();
+                //Application.Current.MainPage = login;
+                await Shell.Current.GoToAsync(nameof(LoginPage));
+                return default(TResponse);
+            }
+            else 
+            {
+
+                return await responseMessage.Content.ReadFromJsonAsync<TResponse>(options);
+            }
         }
         private string UrlParms<TRequest>(string url, TRequest request)
         { 

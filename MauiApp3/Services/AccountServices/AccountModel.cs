@@ -39,7 +39,7 @@ namespace MauiApp3.Services.AccountServices
     public class AccountInfo
     {
         public string Token { get; set; }
-        public long ExpiredTime { get; set; }
+        public DateTime ExpiredTime { get; set; }
     }
     public class LoginRequestModel
     {

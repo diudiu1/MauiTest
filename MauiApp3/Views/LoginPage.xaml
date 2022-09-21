@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp3.LoginPage"
+             Shell.NavBarIsVisible="false"
+             Shell.TabBarIsVisible="false"
              Title="LoginPage">
     <VerticalStackLayout Padding="15">
         <Image Source="jielun.png" Aspect="AspectFill" HeightRequest="80" WidthRequest="80"></Image>

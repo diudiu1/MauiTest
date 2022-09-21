@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp3.HomePage"
              Shell.NavBarIsVisible="false"
+             Shell.TabBarIsVisible="true"
              xmlns:viewmodel="clr-namespace:MauiApp3.ViewModels">
     <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCommand}">
         <CollectionView x:Name="listview" ItemsSource="{Binding BlogList}"  

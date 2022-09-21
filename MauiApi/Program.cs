@@ -75,6 +75,7 @@ namespace MauiApi
                         {
                             code = "401"
                         };
+                        context.Response.StatusCode = 401;
                         await context.Response.WriteAsJsonAsync(obj);
                     }
                 };

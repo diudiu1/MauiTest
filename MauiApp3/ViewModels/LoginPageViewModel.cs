@@ -33,12 +33,18 @@ namespace MauiApp3.ViewModels
                 IAccountService.CurrentAccount = new AccountInfo()
                 {
                     Token = resp.Token,
-                    ExpiredTime = resp.ExpiredTime,
+                    ExpiredTime = DateTime.Now.AddMinutes(resp.ExpiredTime),
                 };
-                Application.Current.MainPage = new AppShell();
-                //((AppShell)Shell.Current).GotoHome();
+                await SecureStorage.Default.SetAsync("Token", IAccountService.CurrentAccount.Token);
+                await SecureStorage.Default.SetAsync("ExpiredTime", IAccountService.CurrentAccount.ExpiredTime.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                //var shell = MauiProgram.Services.GetService<AppShell>();
+                //Application.Current.MainPage = shell;
                 
-                //await Shell.Current.GoToAsync(nameof(HomePage));
+                //Application.Current.MainPage = new AppShell();
+                //((AppShell)Shell.Current).GotoHome();
+
+                await Shell.Current.GoToAsync("..");
             }
         }
     }

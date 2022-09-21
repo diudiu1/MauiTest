@@ -39,9 +39,12 @@ public static class MauiProgram
         services.AddSingleton<MessagePageViewModel>();
         services.AddSingleton<LoginPageViewModel>();
 
+        services.AddSingleton<AppShell>();
         services.AddSingleton<HomePage>();
         services.AddSingleton<BlogDetailPage>();
         services.AddSingleton<LoginPage>();
+        services.AddSingleton<MyIndexPage>();
+        
 
         Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
         Routing.RegisterRoute(nameof(MessagePage), typeof(MessagePage));

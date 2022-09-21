@@ -89,5 +89,17 @@ namespace MauiApp3.Services.AccountServices
 
             return resp;
         }
+
+        public async Task TestAsync()
+        {
+            var resp = await _httpClient.GetAsync<LoginResponseModel>(Appsettings.TestUrl);
+        }
+
+        public Task ClearAsync()
+        {
+            SecureStorage.Default.RemoveAll();
+
+            return Task.CompletedTask;
+        }
     }
 }

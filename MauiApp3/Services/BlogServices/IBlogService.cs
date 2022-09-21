@@ -10,6 +10,5 @@ namespace MauiApp3.Services.BlogServices
     {
         Task<List<BlogListItemResponseModel>> GetBlogListAsync(BlogListRequestModel request);
         Task<BlogListItemResponseModel> GetBlogAsync(string id);
-        Task<BlogListItemResponseModel> GetBlogNextAsync(BlogNextRequestModel request);
     }
 }

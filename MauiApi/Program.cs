@@ -94,11 +94,11 @@ namespace MauiApi
                 await initHandler!.InitDataAsync();
             }
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
+            //if (app.Environment.IsDevelopment())
+            //{
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+            //}
             app.UseStaticFiles();
             app.UseAuthentication();
             app.UseAuthorization();

@@ -33,7 +33,7 @@ namespace MauiApi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     AvatarUrl = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
@@ -57,7 +57,7 @@ namespace MauiApi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ParentId = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
@@ -86,7 +86,7 @@ namespace MauiApi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     VideoUrl = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
@@ -108,7 +108,7 @@ namespace MauiApi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Content = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
@@ -143,7 +143,7 @@ namespace MauiApi.Migrations
                     Address = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     OrderStatus = table.Column<int>(type: "int", nullable: false),
-                    CreatTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
@@ -171,7 +171,7 @@ namespace MauiApi.Migrations
                     Number = table.Column<int>(type: "int", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
                     DiscountAmount = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
-                    CreatTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
@@ -194,7 +194,7 @@ namespace MauiApi.Migrations
                     Remark = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     BannerType = table.Column<int>(type: "int", nullable: false),
-                    CreatTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
@@ -220,7 +220,7 @@ namespace MauiApi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Reamrk = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
@@ -244,7 +244,7 @@ namespace MauiApi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ParentId = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
@@ -272,7 +272,7 @@ namespace MauiApi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Content = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
@@ -294,7 +294,7 @@ namespace MauiApi.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Content = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },

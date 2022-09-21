@@ -19,7 +19,7 @@ namespace MauiApp3.Services.BlogServices
         /// 1 图片 2 视频
         /// </summary>
         public int Type { get; set; }
-        public List<string> ImageUrls { get; set; }
+        public string ImageUrls { get; set; }
         public string VideoUrl { get; set; }
         public DateTime CreateTime { get; set; }
     }
@@ -27,13 +27,5 @@ namespace MauiApp3.Services.BlogServices
     {
         public int PageIndex { get; set; }
         public int PageSize { get; set; }
-    }
-    public class BlogNextRequestModel
-    {
-        public string CurrentId { get; set; }
-        /// <summary>
-        /// 1 上一个  2 下一个
-        /// </summary>
-        public int Action { get; set; }
     }
 }

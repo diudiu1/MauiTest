@@ -42,6 +42,7 @@ namespace MauiApi.Controllers
                     return new LoginResponseModel()
                     {
                         Token = token,
+                        ExpiredTime= _jwtConfig.Expired,
                     };
                 }
             }

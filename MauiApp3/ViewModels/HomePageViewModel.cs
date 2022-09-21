@@ -10,10 +10,10 @@ namespace MauiApp3.ViewModels
     {
         
         private readonly IBlogService _blogService;
-        public HomePageViewModel()
+        public HomePageViewModel(IBlogService blogService)
         {
-            //_blogService = blogService;
-            _blogService = new BlogService(null);
+            _blogService = blogService;
+            //_blogService = new BlogService(null);
             blogList = new ObservableCollection<BlogListItemResponseModel>();
             InitData();
         }

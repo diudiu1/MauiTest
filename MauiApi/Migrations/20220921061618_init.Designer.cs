@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MauiApi.Migrations
 {
     [DbContext(typeof(MauiDbContext))]
-    [Migration("20220920090336_init")]
+    [Migration("20220921061618_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,7 +34,7 @@ namespace MauiApi.Migrations
                     b.Property<DateTime?>("BirthdayTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("CreatTime")
+                    b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
@@ -88,7 +88,7 @@ namespace MauiApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("CreatTime")
+                    b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsDeleted")
@@ -123,7 +123,7 @@ namespace MauiApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("CreatTime")
+                    b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ImageUrls")
@@ -164,7 +164,7 @@ namespace MauiApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("CreatTime")
+                    b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsDeleted")
@@ -200,7 +200,7 @@ namespace MauiApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("CreatTime")
+                    b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsDeleted")
@@ -254,7 +254,7 @@ namespace MauiApi.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<DateTime>("CreatTime")
+                    b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<decimal>("DiscountAmount")
@@ -302,7 +302,7 @@ namespace MauiApi.Migrations
                     b.Property<int>("BannerType")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("CreatTime")
+                    b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("FileUrl")
@@ -337,7 +337,7 @@ namespace MauiApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("CreatTime")
+                    b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsDeleted")
@@ -379,7 +379,7 @@ namespace MauiApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("CreatTime")
+                    b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsDeleted")
@@ -418,7 +418,7 @@ namespace MauiApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("CreatTime")
+                    b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsDeleted")
@@ -458,7 +458,7 @@ namespace MauiApi.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("CreatTime")
+                    b.Property<DateTime>("CreateTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsDeleted")

@@ -1,4 +1,6 @@
+using MauiApi.EFContext;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MauiApi.Controllers
 {
@@ -7,17 +9,66 @@ namespace MauiApi.Controllers
     public class BlogController : ControllerBase
     {
         private readonly ILogger<BlogController> _logger;
-
-        public BlogController(ILogger<BlogController> logger)
+        private MauiDbContext _context;
+        public BlogController(ILogger<BlogController> logger, MauiDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<List<BlogListItemResponseModel>> Get([FromQuery]BlogListRequestModel request)
         {
-            return Enumerable.Range(1, 5).Select(index => "")
-            .ToArray();
+            var resp = await _context.BlogInfo.Skip(request.PageSize * (request.PageIndex - 1)).Take(request.PageSize).Select(a => new BlogListItemResponseModel {
+                Id= a.Id,
+                Content= a.Content,
+                CoverImageUrl= a.CoverImageUrl,
+                CreateTime=a.CreateTime,
+                Title= a.Title,
+                Type=a.Type,
+                VideoUrl=a.VideoUrl,
+                ImageUrls=a.ImageUrls,
+            }).ToListAsync();
+            return resp;
         }
+        [HttpGet("{id}")]
+        public async Task<BlogListItemResponseModel> Get(string id)
+        {
+            var resp = await _context.BlogInfo.Where(a=>a.Id==id).Select(a => new BlogListItemResponseModel
+            {
+                Id = a.Id,
+                Content = a.Content,
+                CoverImageUrl = a.CoverImageUrl,
+                CreateTime = a.CreateTime,
+                Title = a.Title,
+                Type = a.Type,
+                VideoUrl = a.VideoUrl,
+                ImageUrls = a.ImageUrls,
+            }).FirstOrDefaultAsync();
+            return resp;
+        }
+        
+    }
+    public class BlogListRequestModel
+    {
+        public int PageIndex { get; set; }
+        public int PageSize { get; set; }
+    }
+    public class BlogListItemResponseModel
+    {
+        public string Id { get; set; }
+        public string Title { get; set; }
+        /// <summary>
+        /// ∑‚√ÊÕº
+        /// </summary>
+        public string CoverImageUrl { get; set; }
+        public string Content { get; set; }
+        /// <summary>
+        /// 1 Õº∆¨ 2  ”∆µ
+        /// </summary>
+        public int Type { get; set; }
+        public string? ImageUrls { get; set; }
+        public string? VideoUrl { get; set; }
+        public DateTime CreateTime { get; set; }
     }
 }

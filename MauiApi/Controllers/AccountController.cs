@@ -17,11 +17,13 @@ namespace MauiApi.Controllers
         private readonly ILogger<AccountController> _logger;
         private readonly JWTConfig _jwtConfig;
         private MauiDbContext _context;
-        public AccountController(ILogger<AccountController> logger, MauiDbContext context,IOptions<JWTConfig> options)
+        private ICurrentUserService _currentUser;
+        public AccountController(ILogger<AccountController> logger, MauiDbContext context,IOptions<JWTConfig> options, ICurrentUserService currentUser)
         {
             _logger = logger;
             _context = context;
             _jwtConfig = options.Value;
+            _currentUser = currentUser;
         }
 
         [HttpPost("/auth/login")]
@@ -34,8 +36,9 @@ namespace MauiApi.Controllers
                 {
                     var claims = new[]
                      {
-                        new Claim(JwtRegisteredClaimNames.Sub, account.UserName),
-                        new Claim("Id", account.Id),
+                        new Claim(JwtRegisteredClaimNames.Sub, account.Id),
+                        new Claim(JwtRegisteredClaimNames.Name, account.Name),
+                        new Claim("UserName", account.UserName),
                     };
 
                     var token = GenerateJWT(claims);
@@ -47,13 +50,33 @@ namespace MauiApi.Controllers
                 }
             }
 
-            return null;
+            throw new Exception("");
         }
-
+        [HttpGet("myinfo")]
+        [Authorize]
+        public async Task<AccountInfoResponseModel> Myinfo()
+        {
+            var account = await _context.AccountInfo.Where(a => a.UserName == _currentUser.UserName).FirstOrDefaultAsync();
+            if (account != null)
+            {
+                return new AccountInfoResponseModel() {
+                AvatarUrl = account.AvatarUrl,
+                BirthdayTime = account.BirthdayTime,
+                CreateTime = account.CreateTime,
+                Email = account.Email,
+                Id = account.Id,
+                Name = account.Name,
+                Phone = account.Phone,
+                UserName = account.UserName,
+                };
+            }
+            throw new Exception("");
+        }
         [HttpGet("/auth/test")]
         [Authorize]
         public LoginResponseModel Test()
         {
+            string name = _currentUser.Name;
             return new LoginResponseModel() { Token="123456" };
         }
         private string GenerateJWT(Claim[] claims)
@@ -85,5 +108,16 @@ namespace MauiApi.Controllers
     {
         public string Token { get; set; }
         public long ExpiredTime { get; set; }
+    }
+    public class AccountInfoResponseModel
+    {
+        public string Id { get; set; } = null!;
+        public string Name { get; set; } = null!;
+        public string UserName { get; set; } = null!;
+        public DateTime? BirthdayTime { get; set; }
+        public string? Phone { get; set; } = null!;
+        public string? Email { get; set; } = null!;
+        public string AvatarUrl { get; set; } = null!;
+        public DateTime CreateTime { get; set; }
     }
 }

@@ -1,23 +1,20 @@
+using MauiApp3.Configs;
 using MauiApp3.Services.AccountServices;
+using MauiApp3.ViewModels;
 
 namespace MauiApp3;
 
 public partial class MyIndexPage : ContentPage
 {
-    private readonly IAccountService _accountService;
-	public MyIndexPage(IAccountService accountService)
+    private MyIndexPageViewModel _vm;
+    public MyIndexPage( MyIndexPageViewModel vm)
 	{
 		InitializeComponent();
-        _accountService=accountService;
-
+        BindingContext = _vm = vm;
     }
-    async void OnButtonClicked(object sender, EventArgs args)
+    protected override void OnAppearing()
     {
-        await _accountService.ClearAsync();
-        await Shell.Current.GoToAsync(nameof(LoginPage));
-    }
-    async void OnTestClicked(object sender, EventArgs args)
-    {
-        await _accountService.TestAsync();
+        
+        _vm.GetMyInfoCommand.Execute(null);
     }
 }

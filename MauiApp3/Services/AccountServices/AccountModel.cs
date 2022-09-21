@@ -51,4 +51,15 @@ namespace MauiApp3.Services.AccountServices
         public string Token { get; set; }
         public long ExpiredTime { get; set; }
     }
+    public class AccountInfoResponseModel
+    {
+        public string Id { get; set; } = null!;
+        public string Name { get; set; } = null!;
+        public string UserName { get; set; } = null!;
+        public DateTime? BirthdayTime { get; set; }
+        public string? Phone { get; set; } = null!;
+        public string? Email { get; set; } = null!;
+        public string AvatarUrl { get; set; } = null!;
+        public DateTime CreateTime { get; set; }
+    }
 }

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MauiApp3.Configs;
 using MauiApp3.Services.BlogServices;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace MauiApp3.ViewModels
             var BlogList = await GetDataAsync();
             foreach (var item in BlogList)
             {
+                item.CoverImageUrl = Appsettings.BaseAddress + item.CoverImageUrl;
                 blogList.Add(item);
             }
         }

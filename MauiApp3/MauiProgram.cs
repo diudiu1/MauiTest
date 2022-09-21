@@ -38,6 +38,8 @@ public static class MauiProgram
         services.AddSingleton<BlogDetailPageViewModel>();
         services.AddSingleton<MessagePageViewModel>();
         services.AddSingleton<LoginPageViewModel>();
+        services.AddSingleton<MyIndexPageViewModel>();
+        
 
         services.AddSingleton<AppShell>();
         services.AddSingleton<HomePage>();

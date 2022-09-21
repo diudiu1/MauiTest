@@ -49,62 +49,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="Platforms\Android\Resources\xml\auto_backup_rules.xml" />
-	  <None Remove="Resources\Images\jielun.png" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Services\MessageServices\App.xaml.cs">
-	    <DependentUpon>%(Filename)</DependentUpon>
-	  </Compile>
-	  <Compile Update="Services\ProductServices\App.xaml.cs">
-	    <DependentUpon>%(Filename)</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\Homes\BlogDetailPage.xaml.cs">
-	    <DependentUpon>BlogDetailPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\Homes\HomePage.xaml.cs">
-	    <DependentUpon>HomePage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\Messages\MessagePage.xaml.cs">
-	    <DependentUpon>MessagePage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\Myinfos\MyIndexPage.xaml.cs">
-	    <DependentUpon>MyIndexPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Views\Shoppings\ProductListPage.xaml.cs">
-	    <DependentUpon>ProductListPage.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="Services\MessageServices\App.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Services\ProductServices\App.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Homes\BlogDetailPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Homes\HomePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\LoginPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Messages\MessagePage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Myinfos\MyIndexPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\Shoppings\ProductListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
 	</ItemGroup>
 

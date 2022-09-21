@@ -37,11 +37,13 @@ namespace MauiApi
                     options.UseMySql(connection, serverVersion);
                 }
             });
+            builder.Services.AddHttpContextAccessor();
 
-            
-            
+
+
 
             builder.Services.AddScoped<MauiDbInitData>();
+            builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             var jwtConfigSection = builder.Configuration.GetSection("JWTConfig");
             var jwtConfig = new JWTConfig();

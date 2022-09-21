@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>a149abcc-2c5c-49a3-9bb5-805762639766</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

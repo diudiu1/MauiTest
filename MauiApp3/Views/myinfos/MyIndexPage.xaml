@@ -6,12 +6,11 @@
              Shell.TabBarIsVisible="true"
              Title="MyIndexPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to MyIndexPage"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        
-        <Button Text="Go Login" Clicked="OnButtonClicked"  />
-        <Button Text="Auth Test" Clicked="OnTestClicked"  />
+        <Image Source="{Binding AvatarUrl}" Aspect="AspectFill" HeightRequest="80" WidthRequest="80"></Image>
+        <Label Text="{Binding UserName}" VerticalOptions="Center"  HorizontalOptions="Center" />
+        <Label Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Center" />
+
+        <Button Text="退出登录" Command="{Binding ClearCommand}"  />
+        <Button Text="测试" Command="{Binding TestCommand}"  />
     </VerticalStackLayout>
 </ContentPage>

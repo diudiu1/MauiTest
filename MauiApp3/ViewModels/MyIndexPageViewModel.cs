@@ -69,6 +69,7 @@ namespace MauiApp3.ViewModels
                     var resp = await _accountService.UpdateAvatarAsync(sourceStream, photo.FileName);
 
                     await Task.Delay(1000);
+                    this.SetProperty(ref avatarUrl, Appsettings.BaseAddress + resp.AvatarUrl, "AvatarUrl");
                     this.SetProperty(ref isRunning, false, "IsRunning");
 
                 }

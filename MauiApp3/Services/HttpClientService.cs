@@ -61,6 +61,14 @@ namespace MauiApp3.Services
             var resp = await httpClient.PostAsync(url, model);
             return await FromJsonAsync<TResponse>(resp);
         }
+        public async Task<TResponse> PostFileAsync<TResponse>(string url, Stream request,string name)
+        {
+            var httpClient = CreateHttpClient();
+            MultipartFormDataContent content = new MultipartFormDataContent();
+            content.Add(new StreamContent(request), "file", name);
+            var resp = await httpClient.PostAsync(url, content);
+            return await FromJsonAsync<TResponse>(resp);
+        }
         public async Task<TResponse> PutAsync<TRequest, TResponse>(string url, TRequest request)
         {
             var httpClient = CreateHttpClient();
@@ -81,8 +89,16 @@ namespace MauiApp3.Services
             }
             else 
             {
-
-                return await responseMessage.Content.ReadFromJsonAsync<TResponse>(options);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return await responseMessage.Content.ReadFromJsonAsync<TResponse>(options);
+                }
+                else
+                {
+                    string error =await responseMessage.Content.ReadAsStringAsync();
+                    return default(TResponse);
+                }
+                
             }
         }
         private string UrlParms<TRequest>(string url, TRequest request)

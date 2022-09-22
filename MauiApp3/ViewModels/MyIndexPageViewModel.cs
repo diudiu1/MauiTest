@@ -25,6 +25,8 @@ namespace MauiApp3.ViewModels
         public string name;
         [ObservableProperty]
         public string avatarUrl;
+        [ObservableProperty]
+        public bool isRunning = false;
         [RelayCommand]
         async void GetMyInfo()
         {
@@ -52,6 +54,25 @@ namespace MauiApp3.ViewModels
         {
             await _accountService.TestAsync();
             
+        }
+        [RelayCommand]
+        async Task CheckFile()
+        {
+            if (MediaPicker.Default.IsCaptureSupported)
+            {
+                var photo = await MediaPicker.Default.PickPhotoAsync();
+                if (photo != null)
+                {
+                    this.SetProperty(ref isRunning, true, "IsRunning");
+
+                    using Stream sourceStream = await photo.OpenReadAsync();
+                    var resp = await _accountService.UpdateAvatarAsync(sourceStream, photo.FileName);
+
+                    await Task.Delay(1000);
+                    this.SetProperty(ref isRunning, false, "IsRunning");
+
+                }
+            }
         }
     }
 }

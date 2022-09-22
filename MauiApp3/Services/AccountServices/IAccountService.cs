@@ -10,6 +10,7 @@ namespace MauiApp3.Services.AccountServices
     {
         Task<LoginResponseModel> LoginAsync(LoginRequestModel request);
         Task<AccountInfoResponseModel> MyInfoAsync();
+        Task<AccountInfoResponseModel> UpdateAvatarAsync(Stream file,string name);
         Task TestAsync();
         Task ClearAsync();
         public static AccountInfo CurrentAccount { get; set; }

@@ -47,5 +47,11 @@ namespace MauiApp3.Services.AccountServices
         {
             return await _httpClient.GetAsync<AccountInfoResponseModel>(Appsettings.MyInfoUrl);
         }
+
+        public async Task<AccountInfoResponseModel> UpdateAvatarAsync(Stream file,string name)
+        {
+            return await _httpClient.PostFileAsync<AccountInfoResponseModel>(Appsettings.UpdateAvatar, file, name);
+            
+        }
     }
 }

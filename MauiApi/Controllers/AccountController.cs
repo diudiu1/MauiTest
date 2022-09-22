@@ -5,28 +5,35 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
+using System.Net.Mime;
 using System.Security.Claims;
 using System.Text;
+using static System.Collections.Specialized.BitVector32;
 
 namespace MauiApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class AccountController : ControllerBase
     {
         private readonly ILogger<AccountController> _logger;
         private readonly JWTConfig _jwtConfig;
         private MauiDbContext _context;
         private ICurrentUserService _currentUser;
-        public AccountController(ILogger<AccountController> logger, MauiDbContext context,IOptions<JWTConfig> options, ICurrentUserService currentUser)
+        private IWebHostEnvironment _webhostEnv;
+        public AccountController(ILogger<AccountController> logger, MauiDbContext context,IOptions<JWTConfig> options, ICurrentUserService currentUser, IWebHostEnvironment webhostEnv)
         {
             _logger = logger;
             _context = context;
             _jwtConfig = options.Value;
             _currentUser = currentUser;
+            _webhostEnv = webhostEnv;
         }
 
         [HttpPost("/auth/login")]
+        [AllowAnonymous]
         public async Task<LoginResponseModel> Login(LoginRequestModel login)
         {
             var account =await _context.AccountInfo.Where(a => a.UserName == login.UserName).FirstOrDefaultAsync();
@@ -53,7 +60,7 @@ namespace MauiApi.Controllers
             throw new Exception("");
         }
         [HttpGet("myinfo")]
-        [Authorize]
+        
         public async Task<AccountInfoResponseModel> Myinfo()
         {
             var account = await _context.AccountInfo.Where(a => a.UserName == _currentUser.UserName).FirstOrDefaultAsync();
@@ -69,6 +76,26 @@ namespace MauiApi.Controllers
                 Phone = account.Phone,
                 UserName = account.UserName,
                 };
+            }
+            throw new Exception("");
+        }
+        [HttpPost("updateAvatar")]
+        public async Task<AccountInfoResponseModel> UpdateAvatar(IFormFile file)
+        {
+            string[] fileNames = file.FileName.Split('.');
+            var xiangduiPath = $"/images/{Guid.NewGuid()}.{fileNames[1]}";
+            var fullPath = _webhostEnv.WebRootPath+ xiangduiPath;
+            using (var stream = System.IO.File.Create(fullPath))
+            {
+                await file.CopyToAsync(stream);
+            }
+            var account = await _context.AccountInfo.Where(a => a.UserName == _currentUser.UserName).FirstOrDefaultAsync();
+            if (account != null)
+            {
+                account.AvatarUrl = xiangduiPath;
+                await _context.SaveChangesAsync();
+
+                return new AccountInfoResponseModel() { AvatarUrl = account.AvatarUrl, };
             }
             throw new Exception("");
         }

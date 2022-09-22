@@ -4,9 +4,16 @@
              x:Class="MauiApp3.MyIndexPage"
              Shell.NavBarIsVisible="true"
              Shell.TabBarIsVisible="true"
+             xmlns:viewmodel="clr-namespace:MauiApp3.ViewModels"
              Title="MyIndexPage">
     <VerticalStackLayout>
-        <Image Source="{Binding AvatarUrl}" Aspect="AspectFill" HeightRequest="80" WidthRequest="80"></Image>
+        <ActivityIndicator IsRunning="{Binding IsRunning}" />
+        <Image Source="{Binding AvatarUrl}" Aspect="AspectFill" HeightRequest="80" WidthRequest="80">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyIndexPageViewModel}}, Path=CheckFileCommand}" />
+            </Image.GestureRecognizers>
+        </Image>
+        
         <Label Text="{Binding UserName}" VerticalOptions="Center"  HorizontalOptions="Center" />
         <Label Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Center" />
 

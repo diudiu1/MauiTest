@@ -24,6 +24,7 @@ namespace MauiApp3.ViewModels
             foreach (var item in BlogList)
             {
                 item.CoverImageUrl = Appsettings.BaseAddress + item.CoverImageUrl;
+                item.AccountAvatarUrl = Appsettings.BaseAddress + item.AccountAvatarUrl;
                 blogList.Add(item);
             }
         }
@@ -37,7 +38,7 @@ namespace MauiApp3.ViewModels
         [ObservableProperty]
         public int pageIndex = 1;
         [ObservableProperty]
-        public int pageSize= 8;
+        public int pageSize= DeviceInfo.Platform == DevicePlatform.WinUI? 12:8;
         [ObservableProperty]
         public bool isRefreshing=false;
         /// <summary>
@@ -68,7 +69,7 @@ namespace MauiApp3.ViewModels
         async Task Refresh()
         {
             //isRefreshing = true;
-            this.pageIndex=Random.Shared.Next(10);//随机一个分页数
+            this.pageIndex=Random.Shared.Next(1,10);//随机一个分页数
             //清空数据
             blogList.Clear();
             var nextData = await GetDataAsync();

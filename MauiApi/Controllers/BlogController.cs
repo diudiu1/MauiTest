@@ -19,32 +19,47 @@ namespace MauiApi.Controllers
         [HttpGet]
         public async Task<List<BlogListItemResponseModel>> Get([FromQuery]BlogListRequestModel request)
         {
-            var resp = await _context.BlogInfo.Skip(request.PageSize * (request.PageIndex - 1)).Take(request.PageSize).Select(a => new BlogListItemResponseModel {
-                Id= a.Id,
-                Content= a.Content,
-                CoverImageUrl= a.CoverImageUrl,
-                CreateTime=a.CreateTime,
-                Title= a.Title,
-                Type=a.Type,
-                VideoUrl=a.VideoUrl,
-                ImageUrls=a.ImageUrls,
-            }).ToListAsync();
+            var query = from a in _context.BlogInfo
+                        join b in _context.AccountInfo on a.AccountId equals b.Id
+                        select new BlogListItemResponseModel {
+                            Id = a.Id,
+                            Content = a.Content,
+                            CoverImageUrl = a.CoverImageUrl,
+                            CreateTime = a.CreateTime,
+                            Title = a.Title,
+                            Type = a.Type,
+                            VideoUrl = a.VideoUrl,
+                            ImageUrls = a.ImageUrls,
+                            AccountAvatarUrl=b.AvatarUrl,
+                            AccountName=b.Name,
+                            Follow=0
+                        };
+
+
+            var resp = await query.Skip(request.PageSize * (request.PageIndex - 1)).Take(request.PageSize).ToListAsync();
             return resp;
         }
         [HttpGet("{id}")]
         public async Task<BlogListItemResponseModel> Get(string id)
         {
-            var resp = await _context.BlogInfo.Where(a=>a.Id==id).Select(a => new BlogListItemResponseModel
-            {
-                Id = a.Id,
-                Content = a.Content,
-                CoverImageUrl = a.CoverImageUrl,
-                CreateTime = a.CreateTime,
-                Title = a.Title,
-                Type = a.Type,
-                VideoUrl = a.VideoUrl,
-                ImageUrls = a.ImageUrls,
-            }).FirstOrDefaultAsync();
+            var query = from a in _context.BlogInfo
+                        join b in _context.AccountInfo on a.AccountId equals b.Id
+                        where a.Id==id
+                        select new BlogListItemResponseModel
+                        {
+                            Id = a.Id,
+                            Content = a.Content,
+                            CoverImageUrl = a.CoverImageUrl,
+                            CreateTime = a.CreateTime,
+                            Title = a.Title,
+                            Type = a.Type,
+                            VideoUrl = a.VideoUrl,
+                            ImageUrls = a.ImageUrls,
+                            AccountAvatarUrl = b.AvatarUrl,
+                            AccountName = b.Name,
+                            Follow = 0
+                        };
+            var resp = await query.FirstOrDefaultAsync();
             return resp;
         }
         
@@ -70,5 +85,8 @@ namespace MauiApi.Controllers
         public string? ImageUrls { get; set; }
         public string? VideoUrl { get; set; }
         public DateTime CreateTime { get; set; }
+        public int Follow { get; set; }
+        public string AccountName { get; set; }
+        public string AccountAvatarUrl { get; set; }
     }
 }

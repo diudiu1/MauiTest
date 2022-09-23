@@ -22,6 +22,10 @@ namespace MauiApp3.Services.BlogServices
         public string ImageUrls { get; set; }
         public string VideoUrl { get; set; }
         public DateTime CreateTime { get; set; }
+        public int Follow { get; set; }
+        public string AccountName { get; set; }
+        public string AccountAvatarUrl { get; set; }
+
     }
     public class BlogListRequestModel
     {

@@ -11,10 +11,18 @@ public partial class MyIndexPage : ContentPage
 	{
 		InitializeComponent();
         BindingContext = _vm = vm;
-    }
-    protected override void OnAppearing()
-    {
         
-        _vm.GetMyInfoCommand.Execute(null);
+    }
+    protected override async void OnAppearing()
+    {
+        if (IAccountService.CurrentAccount == null)
+        {
+           await Shell.Current.GoToAsync(nameof(LoginPage));
+        }
+        else 
+        {
+            _vm.GetMyInfoCommand.Execute(null);
+        }
+        
     }
 }

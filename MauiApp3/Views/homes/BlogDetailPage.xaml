@@ -12,8 +12,20 @@
             
             <!--<SwipeGestureRecognizer Direction="Right"  Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BlogDetailPageViewModel}}, Path=GoBackCommand}" />-->
         </VerticalStackLayout.GestureRecognizers>
+        <VerticalStackLayout HorizontalOptions="Fill" HeightRequest="300" Background="#eee" IsVisible="{Binding IsVedio}">
+            
+        </VerticalStackLayout>
+        <VerticalStackLayout HorizontalOptions="Fill"  HeightRequest="300" Background="#eee" IsVisible="{Binding IsImage}">
+            <CollectionView ItemsSource="{Binding ImageList}" ItemsLayout="HorizontalList" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding .}"  HeightRequest="300" Aspect="AspectFit"></Image>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
         <Label Text="{Binding Title}"  />
-        <Label Text="{Binding Id}"  />
+        <Label Text="{Binding Content}"  />
         <Button Text="Go Back" Command="{Binding GoBackCommand}"  />
     </VerticalStackLayout>
 </ContentPage>

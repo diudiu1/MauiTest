@@ -47,7 +47,9 @@ namespace MauiApp3.ViewModels
         async Task Clear()
         {
             await _accountService.ClearAsync();
-            await Shell.Current.GoToAsync(nameof(LoginPage));
+            var shell = (AppShell)Shell.Current;
+            shell.GotoHome();
+            //await Shell.Current.GoToAsync(nameof(LoginPage));
         }
         [RelayCommand]
         async Task Test()

@@ -2,22 +2,49 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiApp3.MyIndexPage"
-             Shell.NavBarIsVisible="true"
+             Shell.NavBarIsVisible="false"
              Shell.TabBarIsVisible="true"
              xmlns:viewmodel="clr-namespace:MauiApp3.ViewModels"
              Title="MyIndexPage">
-    <VerticalStackLayout>
-        <ActivityIndicator IsRunning="{Binding IsRunning}" />
-        <Image Source="{Binding AvatarUrl}" Aspect="AspectFill" HeightRequest="80" WidthRequest="80">
-            <Image.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyIndexPageViewModel}}, Path=CheckFileCommand}" />
-            </Image.GestureRecognizers>
-        </Image>
-        
-        <Label Text="{Binding UserName}" VerticalOptions="Center"  HorizontalOptions="Center" />
-        <Label Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Center" />
-
-        <Button Text="退出登录" Command="{Binding ClearCommand}"  />
-        <Button Text="测试" Command="{Binding TestCommand}"  />
+    <VerticalStackLayout  Padding="20,0">
+        <Border  Margin="0,10,-10,10" StrokeThickness="0"  HeightRequest="24" WidthRequest="24" HorizontalOptions="End"  StrokeShape="RoundRectangle 40" >
+            <Image Source="setting.svg" Aspect="AspectFill">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyIndexPageViewModel}}, Path=CheckFileCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Border>
+        <ActivityIndicator IsVisible="{Binding IsRunning}" IsRunning="{Binding IsRunning}" />
+        <HorizontalStackLayout Padding="0,0" Margin="0,0,0,10" HeightRequest="100">
+            <Border StrokeThickness="1"  HeightRequest="80" WidthRequest="80" HorizontalOptions="Center"  StrokeShape="RoundRectangle 40" >
+                <Image Source="{Binding AvatarUrl}" Aspect="AspectFill">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MyIndexPageViewModel}}, Path=CheckFileCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Border>
+            <VerticalStackLayout  Margin="20,0" VerticalOptions="Center">
+                <Label Text="{Binding Name}" FontSize="28" VerticalOptions="Center"  HorizontalOptions="Start" />
+                <Label Text="{Binding UserName}" VerticalOptions="Center"  HorizontalOptions="Start" />
+                
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+        <Grid  Margin="0,20" ColumnSpacing="30" ColumnDefinitions="*, *, *, *, *">
+            <BoxView  Grid.Column="0"  Color="CornflowerBlue" CornerRadius="10"  WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+            <BoxView  Grid.Column="1"  Color="CornflowerBlue" CornerRadius="10"  WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+            <BoxView  Grid.Column="2"  Color="CornflowerBlue" CornerRadius="10"  WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+            <BoxView  Grid.Column="3"  Color="CornflowerBlue" CornerRadius="10"  WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+            <BoxView  Grid.Column="4"  Color="CornflowerBlue" CornerRadius="10"  WidthRequest="50" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+        </Grid>
+        <Label Text="我的交易" VerticalOptions="Center"  HorizontalOptions="Start" />
+        <Grid  Margin="0,20"  ColumnSpacing="30" ColumnDefinitions="*, *, *, *">
+            <BoxView  Grid.Column="0"  Color="CornflowerBlue" CornerRadius="10"  WidthRequest="60" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+            <BoxView  Grid.Column="1"  Color="CornflowerBlue" CornerRadius="10"  WidthRequest="60" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+            <BoxView  Grid.Column="2"  Color="CornflowerBlue" CornerRadius="10"  WidthRequest="60" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+            <BoxView  Grid.Column="3"  Color="CornflowerBlue" CornerRadius="10"  WidthRequest="60" HeightRequest="50" VerticalOptions="Center" HorizontalOptions="Center" />
+        </Grid>
+        <BoxView  Color="CornflowerBlue" CornerRadius="10" HeightRequest="160" VerticalOptions="Center" HorizontalOptions="Fill" />
+        <Button Text="退出登录" WidthRequest="200" Margin="0,30" BackgroundColor="#686868" Command="{Binding ClearCommand}"  />
+        <!--<Button Text="测试" Command="{Binding TestCommand}"  />-->
     </VerticalStackLayout>
 </ContentPage>

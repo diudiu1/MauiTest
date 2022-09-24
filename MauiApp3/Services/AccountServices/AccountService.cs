@@ -39,7 +39,7 @@ namespace MauiApp3.Services.AccountServices
         public Task ClearAsync()
         {
             SecureStorage.Default.RemoveAll();
-
+            IAccountService.CurrentAccount = null;
             return Task.CompletedTask;
         }
 

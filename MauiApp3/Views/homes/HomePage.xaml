@@ -15,7 +15,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="0,0,0,5" Margin="2,2" Background="#dddddd" >
+                    <Grid Padding="0,0,0,5" Margin="2,2" >
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:HomePageViewModel}}, Path=ItemClickCommand}" CommandParameter="{Binding .}"/>
                         </Grid.GestureRecognizers>
@@ -27,12 +27,12 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Border  Grid.Row="0"  StrokeThickness="1" HorizontalOptions="Center"  StrokeShape="RoundRectangle 10,10,10,10" >
-                            <Image Source="{Binding CoverImageUrl}"  Aspect="AspectFill"></Image>
+                        <Border  Grid.Row="0"  StrokeThickness="0" HorizontalOptions="Fill"  StrokeShape="RoundRectangle 10,10,10,10" >
+                            <Image Source="{Binding CoverImageUrl}"  Aspect="AspectFit"></Image>
                         </Border>
 
-                        <Label Grid.Row="1" Text="{Binding Title}" FontAttributes="Bold" FontSize="14" Padding="5,0" VerticalTextAlignment="Center" />
-                        <Grid  Grid.Row="2" Padding="5,0" >
+                        <Label Grid.Row="1" Text="{Binding Title}" FontAttributes="Bold" FontSize="12" Padding="5,0" VerticalTextAlignment="Center" />
+                        <Grid  Grid.Row="2" Padding="5,0,10,0" >
                             <Grid.RowDefinitions>
                                 <RowDefinition  />
                             </Grid.RowDefinitions>
@@ -41,7 +41,10 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="50" />
                             </Grid.ColumnDefinitions>
-                            <Image  Grid.Column="0" Source="{Binding AccountAvatarUrl}" Aspect="AspectFill" HeightRequest="25" WidthRequest="25"></Image>
+                            <Border  Grid.Column="0"  StrokeThickness="1" WidthRequest="26" HeightRequest="26" HorizontalOptions="Center"  StrokeShape="RoundRectangle 13" >
+                                <Image Source="{Binding AccountAvatarUrl}" Aspect="AspectFill"></Image>
+                            </Border>
+                            
                             <Label  Grid.Column="1" Text="{Binding AccountName}" HorizontalOptions="Start" VerticalOptions="Center" />
                             <Label  Grid.Column="2" Text="{Binding Follow}" HorizontalOptions="End" VerticalOptions="Center" />
                         </Grid>

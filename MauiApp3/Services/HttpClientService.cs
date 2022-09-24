@@ -43,22 +43,25 @@ namespace MauiApp3.Services
         public async Task<TResponse> GetAsync<TResponse>(string url)
         {
             var httpClient = CreateHttpClient();
-            var resp = await httpClient.GetAsync(url);
+            //var resp = await httpClient.GetAsync(url);
+            var resp = await SendAsync(httpClient, url, HttpMethod.Get);
             return await FromJsonAsync<TResponse>(resp);
         }
         public async Task<TResponse> GetAsync<TRequest, TResponse>(string url, TRequest request)
         {
             url = UrlParms<TRequest>(url, request);
             var httpClient = CreateHttpClient();
-            var resp = await httpClient.GetAsync(url);
+            //var resp = await httpClient.GetAsync(url);
+            var resp = await SendAsync(httpClient, url, HttpMethod.Get);
             return await FromJsonAsync<TResponse>(resp);
         }
         public async Task<TResponse> PostAsync<TRequest,TResponse>(string url,TRequest request)
         {
             var httpClient = CreateHttpClient();
-            var model = new StringContent(JsonSerializer.Serialize(request));
-            model.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-            var resp = await httpClient.PostAsync(url, model);
+            var content = new StringContent(JsonSerializer.Serialize(request));
+            content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+            //var resp = await httpClient.PostAsync(url, model);
+            var resp = await SendAsync(httpClient, url, HttpMethod.Post, content);
             return await FromJsonAsync<TResponse>(resp);
         }
         public async Task<TResponse> PostFileAsync<TResponse>(string url, Stream request,string name)
@@ -66,24 +69,48 @@ namespace MauiApp3.Services
             var httpClient = CreateHttpClient();
             MultipartFormDataContent content = new MultipartFormDataContent();
             content.Add(new StreamContent(request), "file", name);
-            var resp = await httpClient.PostAsync(url, content);
+            //var resp = await httpClient.PostAsync(url, content);
+            var resp = await SendAsync(httpClient, url, HttpMethod.Post, content);
             return await FromJsonAsync<TResponse>(resp);
         }
         public async Task<TResponse> PutAsync<TRequest, TResponse>(string url, TRequest request)
         {
             var httpClient = CreateHttpClient();
-            var model = new StringContent(JsonSerializer.Serialize(request));
-            model.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-            var resp = await httpClient.PutAsync(url, model);
+            var content = new StringContent(JsonSerializer.Serialize(request));
+            content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
+            var resp = await SendAsync(httpClient,url, HttpMethod.Put, content);
             return await FromJsonAsync<TResponse>(resp);
         }
-
+        private async Task<HttpResponseMessage> SendAsync(HttpClient httpClient,string url, HttpMethod method, HttpContent content=null)
+        {
+            try
+            {
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage()
+                {
+                    Content = content,
+                    Method = method,
+                    RequestUri = new Uri(url)
+                };
+                return await httpClient.SendAsync(httpRequestMessage);
+            }
+            catch (Exception ex)
+            {
+                return null;
+                //throw ex;
+            }
+            
+        }
         private async Task<TResponse> FromJsonAsync<TResponse>(HttpResponseMessage responseMessage)
         {
+            if (responseMessage==null)
+            {
+                return default(TResponse);
+            }
             if (responseMessage.StatusCode == HttpStatusCode.Unauthorized)
             {
                 //var login = MauiProgram.Services.GetService<LoginPage>();
                 //Application.Current.MainPage = login;
+                
                 await Shell.Current.GoToAsync(nameof(LoginPage));
                 return default(TResponse);
             }
@@ -91,11 +118,13 @@ namespace MauiApp3.Services
             {
                 if (responseMessage.IsSuccessStatusCode)
                 {
-                    return await responseMessage.Content.ReadFromJsonAsync<TResponse>(options);
+                    var resp = await responseMessage.Content.ReadFromJsonAsync< ResponseBase<TResponse>>(options);
+                    return resp.Data;
                 }
                 else
                 {
-                    string error =await responseMessage.Content.ReadAsStringAsync();
+                    var error =await responseMessage.Content.ReadFromJsonAsync<ResponseBase>();
+
                     return default(TResponse);
                 }
                 
@@ -119,5 +148,15 @@ namespace MauiApp3.Services
             }
             return url.TrimEnd('&');
         }
+    }
+
+    public class ResponseBase
+    {
+        public string Code { get; set; }
+        public string Message { get; set; }
+    }
+    public class ResponseBase<T> : ResponseBase
+    {
+        public T Data { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace MauiApp3.Configs
 {
     public static class Appsettings
     {
-        public static string BaseAddress =    DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5251" : "http://localhost:5251";
+        public static string BaseAddress =    DeviceInfo.Platform == DevicePlatform.Android ? "http://192.168.1.238:5251" : "http://192.168.1.238:5251";
         //public static string ApiUrl = "http://localhost:5251";
         public static string LoginUrl = BaseAddress + "/auth/login";
         public static string TestUrl = BaseAddress + "/auth/test";

@@ -1,3 +1,4 @@
+using MauiApi.Common;
 using MauiApi.EFContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +21,9 @@ namespace MauiApi
 
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(options => {
+                options.Filters.Add<ResponseFilter>();
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             AddSwaggerGen(builder.Services);

@@ -21,12 +21,15 @@ namespace MauiApp3.ViewModels
         async void InitData()
         {
             var BlogList = await GetDataAsync();
-            foreach (var item in BlogList)
+            if (BlogList != null)
             {
-                item.CoverImageUrl = Appsettings.BaseAddress + item.CoverImageUrl;
-                item.AccountAvatarUrl = Appsettings.BaseAddress + item.AccountAvatarUrl;
-                blogList.Add(item);
+                foreach (var item in BlogList)
+                {
+                    ItemHandler(item);
+                    blogList.Add(item);
+                }
             }
+
         }
         async Task<List<BlogListItemResponseModel>> GetDataAsync()
         {
@@ -51,9 +54,13 @@ namespace MauiApp3.ViewModels
             this.pageIndex++;
 
             var nextData =await GetDataAsync();
-            foreach (var item in nextData)
+            if (nextData != null)
             {
-                blogList.Add(item);
+                foreach (var item in nextData)
+                {
+                    ItemHandler(item);
+                    blogList.Add(item);
+                }
             }
         }
         [RelayCommand]
@@ -70,16 +77,27 @@ namespace MauiApp3.ViewModels
         {
             //isRefreshing = true;
             this.pageIndex=Random.Shared.Next(1,10);//随机一个分页数
-            //清空数据
-            blogList.Clear();
+            
             var nextData = await GetDataAsync();
-            foreach (var item in nextData)
+            if (nextData!=null)
             {
-                blogList.Add(item);
+                //清空数据
+                blogList.Clear();
+                foreach (var item in nextData)
+                {
+                    ItemHandler(item);
+                    blogList.Add(item);
+                }
             }
+            
             isRefreshing = false;
 
             this.OnPropertyChanged("IsRefreshing");
+        }
+        private void ItemHandler(BlogListItemResponseModel item)
+        {
+            item.CoverImageUrl = Appsettings.BaseAddress + item.CoverImageUrl;
+            item.AccountAvatarUrl = Appsettings.BaseAddress + item.AccountAvatarUrl;
         }
     }
 }
